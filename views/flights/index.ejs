@@ -1,0 +1,35 @@
+<%- include('../partials/header'); %>
+
+<h1>Flight Board</h1>
+<table id="list">
+    <thead>
+      <tr>
+        <th>Airline</th>
+        <th>Airport</th>
+        <th>Flight No.</th>
+        <th>Departs</th>
+        <th>Details</th>
+        <th>Action</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flights.forEach(function(f) { %>
+        <tr <%= f.departs < Date.now() ? 'class=past' : 'class='%>>
+          <td><%= f.airline %></td>
+          <td><%= f.airport %></td>
+          <td><%= f.flightNo %></td>
+          <td ><%= f.departs %></td>
+          <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
+          
+          <td>
+          <form id="cancel-flight-form" action="/flights/<%= f._id %>?_method=DELETE" method="POST">
+            <input type="submit" value="Cancel Flight">
+          </form>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+<%- include('../partials/footer'); %>
