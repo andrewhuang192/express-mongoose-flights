@@ -1,5 +1,6 @@
-const flight = require("../models/flight");
+// const flight = require("../models/flight");
 const Flight = require("../models/flight");
+const Ticket = require('../models/ticket');
 
 module.exports = {
     index,  
@@ -28,7 +29,9 @@ function show(req, res) {
         // let destDate = `0${dt.getMonth() + 1}-0${dt.getDate()}-${dt.getFullYear()}T${dt.getHours().toString().padStart(2, '0')}:${dt.getMinutes().toString().padStart(2, '0')}`;
         let destDate = dt.toISOString().slice(0, 16);
         flight.destinations.sort((a,b) => (a.arrival > b.arrival) ? 1 : -1);
-        res.render('flights/show', { title: 'Flight Destinations', flight, destDate });
+        Ticket.find({ flight: flight._id}, function(err, tickets){
+            res.render('flights/show', { title: 'Flight Destinations', flight, destDate, tickets });
+        });
     });
   }
 

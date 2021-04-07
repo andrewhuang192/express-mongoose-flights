@@ -9,12 +9,40 @@
   <div><%= flight.flightNo %></div>
   <div>Departure Time: </div>
   <div><%= flight.departs %></div>
-  <!-- <div>Arrival Airport: </div>
-  <div><%= flight.destinations.airport %></div>
-  <div>Arrival Time: </div>
-  <div><%= flight.destinations.arrival %></div> -->
   
 </section>
+
+<div>
+  <a href="/flights/<%= flight._id %>/tickets/new" method="GET">ADD TICKET</a>
+</div>
+
+<% if (tickets.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Flight ID</th>
+        <th>SeatNo</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tickets.forEach(function(t, idx) { %>
+        <tr>
+            <td><%= t.flight %></td>
+            <td><%= t.seat %></td>
+            <td><%= t.price %></td>
+            <td>
+            <form action="/tickets/<%= t._id %>?_method=DELETE" class="delete-form"	method="POST">
+                <button class="btn btn-primary" type="submit">DELETE</button>
+            </form>
+            </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Tickets Yet</h5>
+<% } %>
 
 <br><br><h2>Destinations</h2>
 <form id="add-destination-form" method="POST"

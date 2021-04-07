@@ -1,0 +1,37 @@
+<%- include('../partials/header'); %>
+
+<h1>Add Ticket</h1>
+<form id="new-ticket-form" action="/flights/<%= flightId %>/tickets" method="POST">
+    <label>FlightNo.</label>
+    <input type="Schema.Types.ObjectId" placeholder="<%= flightId %>"> 
+    
+    <label>Price </label>
+    <input type="text" name="price">
+    
+    <label>Seat Number: </label>
+    <input type="string" name="seat">
+    
+
+    <input type="submit" value="Add Ticket">
+
+    <!-- <div class="row">
+            <div class="col-3 col-md-3">a1</div>
+            <div class="col-3 col-md-3">a2</div>
+            <div class="col-3 col-md-3">a3</div>
+            <div class="col-3 col-md-3">a4</div>
+            <div class="col-3 col-md-3">a5</div>
+            <div class="col-3 col-md-3">a6</div>
+    </div> -->
+
+    <!-- <div class="row">
+            <div class="col-3 col-md-3">b1</div>
+            <div class="col-3 col-md-3">b2</div>
+            <div class="col-3 col-md-3">b3</div>
+            <div class="col-3 col-md-3">b4</div>
+            <div class="col-3 col-md-3">b5</div>
+            <div class="col-3 col-md-3">b6</div>
+    </div> -->
+</form>
+  
+
+<%- include('../partials/footer'); %>
